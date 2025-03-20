@@ -1,0 +1,410 @@
+2025-03-19 19:35:46,682 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-19 19:35:46,682 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-19 19:35:51,716 - ERROR - \u274c Error in scraping job: name 'save_events_to_csv' is not defined
+Traceback (most recent call last):
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scrape_Job.py", line 28, in main
+    scrape_events(event_host_id, event_host_name)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scraper.py", line 44, in scrape_events
+    save_events_to_csv(all_events, event_host_name)
+    ^^^^^^^^^^^^^^^^^^
+NameError: name 'save_events_to_csv' is not defined
+2025-03-19 19:37:16,920 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-19 19:37:16,920 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-19 19:37:22,017 - INFO - \U0001f4cc Step 2: Scraping Match IDs...
+2025-03-19 19:37:26,557 - INFO - \U0001f4cc Step 3: Scraping Match Data...
+2025-03-19 19:37:26,564 - INFO - \u2705 All Scraping Tasks Completed Successfully!
+2025-03-19 19:40:24,486 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-19 19:40:24,486 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-19 19:40:30,173 - INFO - \U0001f4cc Step 2: Scraping Match IDs...
+2025-03-19 19:40:38,116 - INFO - \U0001f4cc Step 3: Scraping Match Data...
+2025-03-19 19:40:38,117 - INFO - \u2705 All Scraping Tasks Completed Successfully!
+2025-03-19 19:41:12,020 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-19 19:41:12,020 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-19 19:41:18,000 - INFO - \U0001f4cc Step 2: Scraping Match IDs...
+2025-03-19 19:41:20,591 - INFO - \U0001f4cc Step 3: Scraping Match Data...
+2025-03-19 19:41:20,593 - INFO - \u2705 All Scraping Tasks Completed Successfully!
+2025-03-19 19:47:18,578 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-19 19:47:18,578 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-19 19:47:30,958 - INFO - \U0001f4cc Step 2: Scraping Match IDs...
+2025-03-19 19:47:32,839 - INFO - \U0001f4cc Step 3: Scraping Match Data...
+2025-03-19 19:47:32,840 - INFO - \u2705 All Scraping Tasks Completed Successfully!
+2025-03-19 19:47:47,015 - INFO - \U0001f6e0\ufe0f TEST MODE STARTED: Running a limited scrape for debugging.
+2025-03-19 19:47:47,015 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-19 19:47:47,015 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-19 19:47:52,262 - INFO - \U0001f4cc Step 2: Scraping Match IDs...
+2025-03-19 19:47:53,817 - INFO - \U0001f4cc Step 3: Scraping Match Data...
+2025-03-19 19:47:53,818 - INFO - \u2705 All Scraping Tasks Completed Successfully!
+2025-03-19 19:51:44,747 - INFO - \U0001f6e0\ufe0f TEST MODE STARTED: Running a limited scrape for debugging.
+2025-03-19 19:51:44,747 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-19 19:51:44,747 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-19 19:51:49,159 - INFO - \U0001f4cc Step 2: Scraping Match IDs...
+2025-03-19 19:51:51,027 - INFO - \U0001f4cc Step 3: Scraping Match Data...
+2025-03-19 19:51:51,028 - INFO - \u2705 All Scraping Tasks Completed Successfully!
+2025-03-19 23:49:37,944 - INFO - \U0001f6e0\ufe0f TEST MODE STARTED: Running a limited scrape for debugging.
+2025-03-19 23:49:37,944 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-19 23:49:37,945 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-19 23:49:43,453 - ERROR - \u274c Error in scraping job: [Errno 2] No such file or directory: 'C:\\data\\raw\\ADCC_OPEN_events_detailed_2025-03-19.csv'
+Traceback (most recent call last):
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scrape_Job.py", line 34, in main
+    scrape_events(event_host_id, event_host_name)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scraper.py", line 103, in scrape_events
+    save_events_to_csv(all_events, output_file)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scraper.py", line 121, in save_events_to_csv
+    with open(file_path, mode="w", newline="", encoding="utf-8") as file:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\data\\raw\\ADCC_OPEN_events_detailed_2025-03-19.csv'
+2025-03-19 23:53:36,601 - INFO - \U0001f6e0\ufe0f TEST MODE STARTED: Running a limited scrape for debugging.
+2025-03-19 23:53:36,601 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-19 23:53:36,601 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-19 23:54:01,179 - ERROR - \u274c Error in scraping job: [Errno 2] No such file or directory: 'C:\\data\\raw\\ADCC_OPEN_events_detailed_2025-03-19.csv'
+Traceback (most recent call last):
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scrape_Job.py", line 34, in main
+    scrape_events(event_host_id, event_host_name)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scraper.py", line 103, in scrape_events
+    save_events_to_csv(all_events, output_file)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scraper.py", line 121, in save_events_to_csv
+    with open(file_path, mode="w", newline="", encoding="utf-8") as file:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\data\\raw\\ADCC_OPEN_events_detailed_2025-03-19.csv'
+2025-03-20 00:04:11,736 - INFO - \U0001f6e0\ufe0f TEST MODE STARTED: Running a limited scrape for debugging.
+2025-03-20 00:04:11,737 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-20 00:04:11,737 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-20 00:04:18,814 - ERROR - \u274c Error in scraping job: [Errno 2] No such file or directory: 'C:\\data\\raw\\ADCC_OPEN_events_detailed_2025-03-20.csv'
+Traceback (most recent call last):
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scrape_Job.py", line 34, in main
+    scrape_events(event_host_id, event_host_name)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scraper.py", line 104, in scrape_events
+    save_events_to_csv(all_events, output_file)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scraper.py", line 123, in save_events_to_csv
+    with open(file_path, mode="w", newline="", encoding="utf-8") as file:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\data\\raw\\ADCC_OPEN_events_detailed_2025-03-20.csv'
+2025-03-20 00:06:30,498 - INFO - \U0001f6e0\ufe0f TEST MODE STARTED: Running a limited scrape for debugging.
+2025-03-20 00:06:30,498 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-20 00:06:30,498 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-20 00:06:36,762 - ERROR - \u274c Error in scraping job: [Errno 2] No such file or directory: 'C:\\data\\raw\\ADCC_OPEN_events_detailed_2025-03-20.csv'
+Traceback (most recent call last):
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scrape_Job.py", line 34, in main
+    scrape_events(event_host_id, event_host_name)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scraper.py", line 101, in scrape_events
+    save_events_to_csv(all_events, output_file)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scraper.py", line 120, in save_events_to_csv
+    with open(file_path, mode="w", newline="", encoding="utf-8") as file:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\data\\raw\\ADCC_OPEN_events_detailed_2025-03-20.csv'
+2025-03-20 00:07:00,322 - INFO - \U0001f6e0\ufe0f TEST MODE STARTED: Running a limited scrape for debugging.
+2025-03-20 00:07:00,322 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-20 00:07:00,323 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-20 00:07:05,187 - ERROR - \u274c Error in scraping job: [Errno 2] No such file or directory: 'C:\\data\\raw\\ADCC_OPEN_events_detailed_2025-03-20.csv'
+Traceback (most recent call last):
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scrape_Job.py", line 34, in main
+    scrape_events(event_host_id, event_host_name)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scraper.py", line 101, in scrape_events
+    save_events_to_csv(all_events, output_file)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scraper.py", line 120, in save_events_to_csv
+    with open(file_path, mode="w", newline="", encoding="utf-8") as file:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\data\\raw\\ADCC_OPEN_events_detailed_2025-03-20.csv'
+2025-03-20 00:08:27,918 - INFO - \U0001f6e0\ufe0f TEST MODE STARTED: Running a limited scrape for debugging.
+2025-03-20 00:08:27,918 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-20 00:08:27,918 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-20 00:08:33,670 - ERROR - \u274c Error in scraping job: [Errno 2] No such file or directory: 'C:\\data\\raw\\ADCC_OPEN_events_detailed_2025-03-20.csv'
+Traceback (most recent call last):
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scrape_Job.py", line 34, in main
+    scrape_events(event_host_id, event_host_name)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scraper.py", line 101, in scrape_events
+    save_events_to_csv(all_events, output_file)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scraper.py", line 120, in save_events_to_csv
+    with open(file_path, mode="w", newline="", encoding="utf-8") as file:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\data\\raw\\ADCC_OPEN_events_detailed_2025-03-20.csv'
+2025-03-20 00:09:13,228 - INFO - \U0001f6e0\ufe0f TEST MODE STARTED: Running a limited scrape for debugging.
+2025-03-20 00:09:13,228 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-20 00:09:13,228 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-20 00:09:20,551 - INFO - \U0001f4cc Step 2: Scraping Match IDs...
+2025-03-20 00:09:20,552 - ERROR - \u274c Error in scraping job: [Errno 2] No such file or directory: 'C:\\data\\raw\\True_events_detailed_2025-03-20'
+Traceback (most recent call last):
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scrape_Job.py", line 38, in main
+    scrape_match_ids(event_host_name, test_mode)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_MatchID_Scraper.py", line 60, in scrape_match_ids
+    events = pd.read_csv(EVENTS_CSV)  # Ensure EVENTS_CSV is already defined
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\data\\raw\\True_events_detailed_2025-03-20'
+2025-03-20 00:12:24,947 - INFO - \U0001f6e0\ufe0f TEST MODE STARTED: Running a limited scrape for debugging.
+2025-03-20 00:12:24,947 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-20 00:12:24,947 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-20 00:12:30,387 - INFO - \U0001f4cc Step 2: Scraping Match IDs...
+2025-03-20 00:12:30,388 - ERROR - \u274c Error in scraping job: [Errno 2] No such file or directory: 'C:\\data\\raw\\True_events_detailed_2025-03-20'
+Traceback (most recent call last):
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scrape_Job.py", line 38, in main
+    scrape_match_ids(event_host_name, test_mode)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_MatchID_Scraper.py", line 60, in scrape_match_ids
+    events = pd.read_csv(EVENTS_CSV)  # Ensure EVENTS_CSV is already defined
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\data\\raw\\True_events_detailed_2025-03-20'
+2025-03-20 00:32:15,167 - INFO - \U0001f6e0\ufe0f TEST MODE STARTED: Running a limited scrape for debugging.
+2025-03-20 00:32:15,167 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-20 00:32:15,169 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-20 00:32:21,349 - INFO - \U0001f4cc Step 2: Scraping Match IDs...
+2025-03-20 00:32:21,350 - ERROR - \u274c Error in scraping job: [Errno 2] No such file or directory: 'C:\\BJJ Database\\data\\raw\\True_events_detailed_2025-03-20'
+Traceback (most recent call last):
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scrape_Job.py", line 38, in main
+    scrape_match_ids(event_host_name, test_mode)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_MatchID_Scraper.py", line 62, in scrape_match_ids
+    events = pd.read_csv(EVENTS_CSV)  # Ensure EVENTS_CSV is already defined
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\BJJ Database\\data\\raw\\True_events_detailed_2025-03-20'
+2025-03-20 00:34:49,567 - INFO - \U0001f6e0\ufe0f TEST MODE STARTED: Running a limited scrape for debugging.
+2025-03-20 00:34:49,567 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-20 00:34:49,568 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-20 00:34:51,319 - ERROR - \u274c Error in scraping job: 'page'
+Traceback (most recent call last):
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scrape_Job.py", line 34, in main
+    scrape_events(event_host_id, event_host_name)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scraper.py", line 46, in scrape_events
+    event_url = pagination_url_format.format(page)  # \u2705 Correctly format page number
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'page'
+2025-03-20 00:38:04,603 - INFO - \U0001f6e0\ufe0f TEST MODE STARTED: Running a limited scrape for debugging.
+2025-03-20 00:38:04,604 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-20 00:38:04,604 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-20 00:38:20,127 - INFO - \U0001f4cc Step 2: Scraping Match IDs...
+2025-03-20 00:38:20,127 - ERROR - \u274c Error in scraping job: [Errno 2] No such file or directory: 'C:\\BJJ Database\\data\\raw\\True_events_detailed_2025-03-20'
+Traceback (most recent call last):
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scrape_Job.py", line 38, in main
+    scrape_match_ids(event_host_name, test_mode)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_MatchID_Scraper.py", line 62, in scrape_match_ids
+    events = pd.read_csv(EVENTS_CSV)  # Ensure EVENTS_CSV is already defined
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\BJJ Database\\data\\raw\\True_events_detailed_2025-03-20'
+2025-03-20 00:44:49,233 - INFO - \U0001f6e0\ufe0f TEST MODE STARTED: Running a limited scrape for debugging.
+2025-03-20 00:44:49,233 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-20 00:44:49,235 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-20 00:45:08,608 - INFO - \U0001f4cc Step 2: Scraping Match IDs...
+2025-03-20 00:45:08,609 - ERROR - \u274c Error in scraping job: [Errno 2] No such file or directory: 'C:\\BJJ Database\\data\\raw\\True_events_detailed_2025-03-20'
+Traceback (most recent call last):
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scrape_Job.py", line 38, in main
+    scrape_match_ids(event_host_name, test_mode)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_MatchID_Scraper.py", line 62, in scrape_match_ids
+    events = pd.read_csv(EVENTS_CSV)  # Ensure EVENTS_CSV is already defined
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\BJJ Database\\data\\raw\\True_events_detailed_2025-03-20'
+2025-03-20 00:50:38,165 - INFO - \U0001f6e0\ufe0f TEST MODE STARTED: Running a limited scrape for debugging.
+2025-03-20 00:50:38,165 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-20 00:50:38,165 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-20 00:50:44,317 - INFO - \U0001f4cc Step 2: Scraping Match IDs...
+2025-03-20 00:50:44,318 - ERROR - \u274c Error in scraping job: [Errno 2] No such file or directory: 'C:\\BJJ Database\\data\\raw\\True_events_detailed_2025-03-20'
+Traceback (most recent call last):
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scrape_Job.py", line 38, in main
+    scrape_match_ids(event_host_name, test_mode)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_MatchID_Scraper.py", line 62, in scrape_match_ids
+    events = pd.read_csv(EVENTS_CSV)  # Ensure EVENTS_CSV is already defined
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\BJJ Database\\data\\raw\\True_events_detailed_2025-03-20'
+2025-03-20 00:50:54,897 - INFO - \U0001f6e0\ufe0f TEST MODE STARTED: Running a limited scrape for debugging.
+2025-03-20 00:50:54,897 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-20 00:50:54,898 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-20 00:50:56,617 - ERROR - \u274c Error in scraping job: name 'page_range' is not defined
+Traceback (most recent call last):
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scrape_Job.py", line 34, in main
+    scrape_events(event_host_id, event_host_name)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scraper.py", line 51, in scrape_events
+    for page in page_range:
+                ^^^^^^^^^^
+NameError: name 'page_range' is not defined
+2025-03-20 00:52:54,848 - INFO - \U0001f6e0\ufe0f TEST MODE STARTED: Running a limited scrape for debugging.
+2025-03-20 00:52:54,849 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-20 00:52:54,849 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-20 00:53:17,666 - INFO - \U0001f4cc Step 2: Scraping Match IDs...
+2025-03-20 00:53:17,666 - ERROR - \u274c Error in scraping job: [Errno 2] No such file or directory: 'C:\\BJJ Database\\data\\raw\\True_events_detailed_2025-03-20'
+Traceback (most recent call last):
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scrape_Job.py", line 38, in main
+    scrape_match_ids(event_host_name, test_mode)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_MatchID_Scraper.py", line 62, in scrape_match_ids
+    events = pd.read_csv(EVENTS_CSV)  # Ensure EVENTS_CSV is already defined
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\BJJ Database\\data\\raw\\True_events_detailed_2025-03-20'
+2025-03-20 00:59:29,249 - INFO - \U0001f6e0\ufe0f TEST MODE STARTED: Running a limited scrape for debugging.
+2025-03-20 00:59:29,249 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-20 00:59:29,249 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-20 00:59:33,097 - INFO - \U0001f4cc Step 2: Scraping Match IDs...
+2025-03-20 00:59:33,097 - ERROR - \u274c Error in scraping job: [Errno 2] No such file or directory: 'C:\\BJJ Database\\data\\raw\\True_events_detailed_2025-03-20'
+Traceback (most recent call last):
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scrape_Job.py", line 38, in main
+    scrape_match_ids(event_host_name, test_mode)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_MatchID_Scraper.py", line 62, in scrape_match_ids
+    events = pd.read_csv(EVENTS_CSV)  # Ensure EVENTS_CSV is already defined
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\BJJ Database\\data\\raw\\True_events_detailed_2025-03-20'
+2025-03-20 01:03:00,213 - INFO - \U0001f6e0\ufe0f TEST MODE STARTED: Running a limited scrape for debugging.
+2025-03-20 01:03:00,213 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-20 01:03:00,213 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-20 01:03:04,033 - INFO - \U0001f4cc Step 2: Scraping Match IDs...
+2025-03-20 01:03:14,748 - INFO - \U0001f4cc Step 3: Scraping Match Data...
+2025-03-20 01:03:14,748 - INFO - \u2705 All Scraping Tasks Completed Successfully!
+2025-03-20 01:07:23,836 - INFO - \U0001f6e0\ufe0f TEST MODE STARTED: Running a limited scrape for debugging.
+2025-03-20 01:07:23,837 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-20 01:07:23,837 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-20 01:07:27,679 - INFO - \U0001f4cc Step 2: Scraping Match IDs...
+2025-03-20 01:07:33,153 - INFO - \U0001f4cc Step 3: Scraping Match Data...
+2025-03-20 01:07:33,153 - INFO - \u2705 All Scraping Tasks Completed Successfully!
+2025-03-20 09:15:36,778 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-20 09:15:36,778 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-20 09:15:39,415 - INFO - \U0001f4cc Step 2: Scraping Match IDs...
+2025-03-20 09:15:40,979 - INFO - \U0001f4cc Step 3: Scraping Match Data...
+2025-03-20 09:15:40,979 - INFO - \u2705 All Scraping Tasks Completed Successfully!
+2025-03-20 09:29:33,792 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-20 09:29:33,792 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-20 09:29:46,290 - INFO - \U0001f4cc Step 2: Scraping Match IDs...
+2025-03-20 09:29:52,613 - INFO - \U0001f4cc Step 3: Scraping Match Data...
+2025-03-20 09:29:52,613 - INFO - \u2705 All Scraping Tasks Completed Successfully!
+2025-03-20 09:32:35,147 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-20 09:32:35,147 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-20 09:32:39,222 - INFO - \U0001f4cc Step 2: Scraping Bracket IDs...
+2025-03-20 09:32:40,955 - INFO - \U0001f4cc Step 3: Scraping Match IDs from Api...
+2025-03-20 09:32:41,688 - ERROR - \u274c Error in scraping job: Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "C:\BJJ Database\.venv\Lib\site-packages\requests\models.py", line 974, in json
+    return complexjson.loads(self.text, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ppan4\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ppan4\AppData\Local\Programs\Python\Python312\Lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ppan4\AppData\Local\Programs\Python\Python312\Lib\json\decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scrape_Job.py", line 37, in main
+    scrape_match_ids(event_host_name, test_mode)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_MatchID_Scraper.py", line 125, in scrape_match_ids
+    data = response.json()
+           ^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\requests\models.py", line 978, in json
+    raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)
+requests.exceptions.JSONDecodeError: Expecting value: line 1 column 1 (char 0)

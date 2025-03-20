@@ -1,0 +1,227 @@
+2025-03-20 09:41:18,197 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-20 09:41:18,197 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-20 09:41:21,317 - INFO - \U0001f4cc Step 2: Scraping Bracket IDs...
+2025-03-20 09:41:23,362 - INFO - \U0001f4cc Step 3: Scraping Match IDs from Api...
+2025-03-20 09:41:24,076 - ERROR - \u274c Error in scraping job: Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "C:\BJJ Database\.venv\Lib\site-packages\requests\models.py", line 974, in json
+    return complexjson.loads(self.text, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ppan4\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ppan4\AppData\Local\Programs\Python\Python312\Lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ppan4\AppData\Local\Programs\Python\Python312\Lib\json\decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scrape_Job.py", line 45, in main
+    scrape_match_ids(event_host_name, test_mode)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_MatchID_Scraper.py", line 125, in scrape_match_ids
+    data = response.json()
+           ^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\requests\models.py", line 978, in json
+    raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)
+requests.exceptions.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+2025-03-20 09:46:49,021 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-20 09:46:49,022 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-20 09:46:50,303 - ERROR - \u274c Error in scraping job: 'page'
+Traceback (most recent call last):
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scrape_Job.py", line 37, in main
+    scrape_events(event_host_id, event_host_name,test_mode)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scraper.py", line 38, in scrape_events
+    event_url = pagination_url_format.format(page)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'page'
+
+2025-03-20 09:56:54,719 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-20 09:56:54,719 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-20 09:56:56,032 - ERROR - \u274c Error in scraping job: 'page'
+Traceback (most recent call last):
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scrape_Job.py", line 38, in main
+    scrape_events(event_host_id, event_host_name,test_mode)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scraper.py", line 38, in scrape_events
+    event_url = pagination_url_format.format(page)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'page'
+
+2025-03-20 10:04:55,354 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-20 10:04:55,354 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-20 10:04:56,864 - ERROR - \u274c Error in scraping job: 'page'
+Traceback (most recent call last):
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scrape_Job.py", line 38, in main
+    scrape_events(event_host_id, event_host_name,test_mode)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scraper.py", line 38, in scrape_events
+    event_url = pagination_url_format.format(page)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'page'
+
+2025-03-20 10:15:10,013 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-20 10:15:10,014 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-20 10:15:12,856 - INFO - \U0001f4cc Step 2: Scraping Bracket IDs...
+2025-03-20 10:15:16,129 - INFO - \U0001f4cc Step 3: Scraping Match IDs from Api...
+2025-03-20 10:15:16,841 - ERROR - \u274c Error in scraping job: Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "C:\BJJ Database\.venv\Lib\site-packages\requests\models.py", line 974, in json
+    return complexjson.loads(self.text, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ppan4\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ppan4\AppData\Local\Programs\Python\Python312\Lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ppan4\AppData\Local\Programs\Python\Python312\Lib\json\decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scrape_Job.py", line 46, in main
+    scrape_match_ids(event_host_name, test_mode)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_MatchID_Scraper.py", line 125, in scrape_match_ids
+    data = response.json()
+           ^^^^^^^^^^^^^^^
+  File "C:\BJJ Database\.venv\Lib\site-packages\requests\models.py", line 978, in json
+    raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)
+requests.exceptions.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+2025-03-20 10:26:53,653 - INFO - \U0001f680 Starting SmoothComp Scraper Job...
+2025-03-20 10:26:53,653 - INFO - \U0001f4cc Step 1: Scraping Events...
+2025-03-20 10:26:57,182 - INFO - \U0001f4cc Step 2: Scraping Bracket IDs...
+2025-03-20 10:27:00,960 - INFO - \U0001f4cc Step 3: Scraping Match IDs from Api...
+2025-03-20 10:27:05,699 - INFO - \U0001f4cc Step 4: Scraping Match Data...
+2025-03-20 10:27:07,864 - ERROR - \u274c Error in scraping job: dict contains fields not in fieldnames: 'right', 'scoreboardLink', 'matchInfo', 'resolveCancelLink', 'group', 'video', 'left', 'videoLink'
+Traceback (most recent call last):
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scrape_Job.py", line 51, in main
+    scrape_match_data(event_host_name, test_mode)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_MatchData_Scraper.py", line 100, in scrape_match_data
+    save_match_data_to_csv(match_results, output_file)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_MatchData_Scraper.py", line 112, in save_match_data_to_csv
+    writer.writerows(match_results)
+  File "C:\Users\ppan4\AppData\Local\Programs\Python\Python312\Lib\csv.py", line 167, in writerows
+    return self.writer.writerows(map(self._dict_to_list, rowdicts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ppan4\AppData\Local\Programs\Python\Python312\Lib\csv.py", line 159, in _dict_to_list
+    raise ValueError("dict contains fields not in fieldnames: "
+ValueError: dict contains fields not in fieldnames: 'right', 'scoreboardLink', 'matchInfo', 'resolveCancelLink', 'group', 'video', 'left', 'videoLink'
+
+2025-03-20 10:33:35,865 - INFO - \U0001f680 Starting SmoothComp Scraper Job in test mode...
+2025-03-20 10:33:35,865 - INFO - \U0001f4cc Step 1: Scraping Events  ...
+2025-03-20 10:33:44,535 - INFO - \U0001f4cc Step 2: Scraping Bracket IDs...
+2025-03-20 10:33:50,883 - INFO - \U0001f4cc Step 3: Scraping Match IDs from Api...
+2025-03-20 10:34:12,298 - INFO - \U0001f4cc Step 4: Scraping Match Data...
+2025-03-20 10:34:21,677 - ERROR - \u274c Error in scraping job: dict contains fields not in fieldnames: 'video', 'right', 'group', 'matchInfo', 'left', 'videoLink', 'scoreboardLink', 'resolveCancelLink'
+Traceback (most recent call last):
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scrape_Job.py", line 51, in main
+    scrape_match_data(event_host_name, test_mode)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_MatchData_Scraper.py", line 100, in scrape_match_data
+    save_match_data_to_csv(match_results, output_file)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_MatchData_Scraper.py", line 112, in save_match_data_to_csv
+    writer.writerows(match_results)
+  File "C:\Users\ppan4\AppData\Local\Programs\Python\Python312\Lib\csv.py", line 167, in writerows
+    return self.writer.writerows(map(self._dict_to_list, rowdicts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ppan4\AppData\Local\Programs\Python\Python312\Lib\csv.py", line 159, in _dict_to_list
+    raise ValueError("dict contains fields not in fieldnames: "
+ValueError: dict contains fields not in fieldnames: 'video', 'right', 'group', 'matchInfo', 'left', 'videoLink', 'scoreboardLink', 'resolveCancelLink'
+
+2025-03-20 10:34:36,347 - INFO - \U0001f680 Starting SmoothComp Scraper Job in test mode...
+2025-03-20 10:34:36,347 - INFO - \U0001f4cc Step 1: Scraping Events  ...
+2025-03-20 10:34:41,021 - INFO - \U0001f4cc Step 2: Scraping Bracket IDs...
+2025-03-20 10:34:43,256 - INFO - \U0001f4cc Step 3: Scraping Match IDs from Api...
+2025-03-20 10:34:47,027 - INFO - \U0001f4cc Step 4: Scraping Match Data...
+2025-03-20 10:34:49,459 - ERROR - \u274c Error in scraping job: dict contains fields not in fieldnames: 'right', 'videoLink', 'matchInfo', 'resolveCancelLink', 'group', 'video', 'left', 'scoreboardLink'
+Traceback (most recent call last):
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scrape_Job.py", line 51, in main
+    scrape_match_data(event_host_name, test_mode)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_MatchData_Scraper.py", line 100, in scrape_match_data
+    save_match_data_to_csv(match_results, output_file)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_MatchData_Scraper.py", line 112, in save_match_data_to_csv
+    writer.writerows(match_results)
+  File "C:\Users\ppan4\AppData\Local\Programs\Python\Python312\Lib\csv.py", line 167, in writerows
+    return self.writer.writerows(map(self._dict_to_list, rowdicts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ppan4\AppData\Local\Programs\Python\Python312\Lib\csv.py", line 159, in _dict_to_list
+    raise ValueError("dict contains fields not in fieldnames: "
+ValueError: dict contains fields not in fieldnames: 'right', 'videoLink', 'matchInfo', 'resolveCancelLink', 'group', 'video', 'left', 'scoreboardLink'
+
+2025-03-20 10:35:17,547 - INFO - \U0001f680 Starting SmoothComp Scraper Job in test mode...
+2025-03-20 10:35:17,547 - INFO - \U0001f4cc Step 1: Scraping Events  ...
+2025-03-20 10:35:20,268 - INFO - \U0001f4cc Step 2: Scraping Bracket IDs...
+2025-03-20 10:35:23,858 - INFO - \U0001f4cc Step 3: Scraping Match IDs from Api...
+2025-03-20 10:35:27,686 - INFO - \U0001f4cc Step 4: Scraping Match Data...
+2025-03-20 10:35:29,811 - ERROR - \u274c Error in scraping job: dict contains fields not in fieldnames: 'scoreboardLink', 'left', 'videoLink', 'matchInfo', 'video', 'group', 'right', 'resolveCancelLink'
+Traceback (most recent call last):
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scrape_Job.py", line 51, in main
+    scrape_match_data(event_host_name, test_mode)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_MatchData_Scraper.py", line 100, in scrape_match_data
+    save_match_data_to_csv(match_results, output_file)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_MatchData_Scraper.py", line 112, in save_match_data_to_csv
+    writer.writerows(match_results)
+  File "C:\Users\ppan4\AppData\Local\Programs\Python\Python312\Lib\csv.py", line 167, in writerows
+    return self.writer.writerows(map(self._dict_to_list, rowdicts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ppan4\AppData\Local\Programs\Python\Python312\Lib\csv.py", line 159, in _dict_to_list
+    raise ValueError("dict contains fields not in fieldnames: "
+ValueError: dict contains fields not in fieldnames: 'scoreboardLink', 'left', 'videoLink', 'matchInfo', 'video', 'group', 'right', 'resolveCancelLink'
+
+2025-03-20 10:37:11,318 - INFO - \U0001f680 Starting SmoothComp Scraper Job in test mode...
+2025-03-20 10:37:11,319 - INFO - \U0001f4cc Step 1: Scraping Events  ...
+2025-03-20 10:37:14,232 - INFO - \U0001f4cc Step 2: Scraping Bracket IDs...
+2025-03-20 10:37:16,187 - INFO - \U0001f4cc Step 3: Scraping Match IDs from Api...
+2025-03-20 10:37:19,510 - INFO - \U0001f4cc Step 4: Scraping Match Data...
+2025-03-20 10:37:21,217 - ERROR - \u274c Error in scraping job: dict contains fields not in fieldnames: 'videoLink', 'matchInfo', 'right', 'group', 'left', 'resolveCancelLink', 'video', 'scoreboardLink'
+Traceback (most recent call last):
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scrape_Job.py", line 51, in main
+    scrape_match_data(event_host_name, test_mode)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_MatchData_Scraper.py", line 100, in scrape_match_data
+    save_match_data_to_csv(match_results, output_file)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_MatchData_Scraper.py", line 112, in save_match_data_to_csv
+    writer.writerows(match_results)
+  File "C:\Users\ppan4\AppData\Local\Programs\Python\Python312\Lib\csv.py", line 167, in writerows
+    return self.writer.writerows(map(self._dict_to_list, rowdicts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ppan4\AppData\Local\Programs\Python\Python312\Lib\csv.py", line 159, in _dict_to_list
+    raise ValueError("dict contains fields not in fieldnames: "
+ValueError: dict contains fields not in fieldnames: 'videoLink', 'matchInfo', 'right', 'group', 'left', 'resolveCancelLink', 'video', 'scoreboardLink'
+
+2025-03-20 10:41:34,666 - INFO - \U0001f680 Starting SmoothComp Scraper Job in test mode...
+2025-03-20 10:41:34,666 - INFO - \U0001f4cc Step 1: Scraping Events  ...
+2025-03-20 10:41:37,933 - INFO - \U0001f4cc Step 2: Scraping Bracket IDs...
+2025-03-20 10:41:41,128 - INFO - \U0001f4cc Step 3: Scraping Match IDs from Api...
+2025-03-20 10:41:45,457 - INFO - \U0001f4cc Step 4: Scraping Match Data...
+2025-03-20 10:41:47,819 - ERROR - \u274c Error in scraping job: dict contains fields not in fieldnames: 'resolveCancelLink', 'matchInfo', 'group', 'scoreboardLink', 'right', 'video', 'videoLink', 'left'
+Traceback (most recent call last):
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_Event_Scrape_Job.py", line 51, in main
+    scrape_match_data(event_host_name, test_mode)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_MatchData_Scraper.py", line 100, in scrape_match_data
+    save_match_data_to_csv(match_results, output_file)
+  File "C:\BJJ Database\scrapers\Smooth_Comp\SC_MatchData_Scraper.py", line 112, in save_match_data_to_csv
+    writer.writerows(match_results)
+  File "C:\Users\ppan4\AppData\Local\Programs\Python\Python312\Lib\csv.py", line 167, in writerows
+    return self.writer.writerows(map(self._dict_to_list, rowdicts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ppan4\AppData\Local\Programs\Python\Python312\Lib\csv.py", line 159, in _dict_to_list
+    raise ValueError("dict contains fields not in fieldnames: "
+ValueError: dict contains fields not in fieldnames: 'resolveCancelLink', 'matchInfo', 'group', 'scoreboardLink', 'right', 'video', 'videoLink', 'left'
+
+2025-03-20 10:51:18,569 - INFO - \U0001f680 Starting SmoothComp Scraper Job in test mode...
+2025-03-20 10:51:18,569 - INFO - \U0001f4cc Step 1: Scraping Events  ...
+2025-03-20 10:51:22,565 - INFO - \U0001f4cc Step 2: Scraping Bracket IDs...
+2025-03-20 10:51:24,943 - INFO - \U0001f4cc Step 3: Scraping Match IDs from Api...
+2025-03-20 10:51:29,211 - INFO - \U0001f4cc Step 4: Scraping Match Data...
+2025-03-20 10:51:31,018 - INFO - \u2705 All Scraping Tasks Completed Successfully!
+2025-03-20 11:05:38,195 - INFO - \U0001f680 Starting SmoothComp Scraper Job in test mode...
+2025-03-20 11:05:38,195 - INFO - \U0001f4cc Step 1: Scraping Events  ...
+2025-03-20 11:05:44,709 - INFO - \U0001f4cc Step 2: Scraping Bracket IDs...
+2025-03-20 11:05:50,566 - INFO - \U0001f4cc Step 3: Scraping Match IDs from Api...
+2025-03-20 11:06:05,068 - INFO - \U0001f4cc Step 4: Scraping Match Data...
+2025-03-20 11:06:10,407 - INFO - \u2705 All Scraping Tasks Completed Successfully!

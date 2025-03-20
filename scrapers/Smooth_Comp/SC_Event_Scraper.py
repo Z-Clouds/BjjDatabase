@@ -1,116 +1,92 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.options import Options
-import re
-import time
-import json
-import sys
+import requests
 import os
+import json
+from bs4 import BeautifulSoup
+from datetime import datetime
+import pandas as pd
+from utils.pagination_utils import get_max_pages
 
-# ✅ Fix: Dynamically add the project root to sys.path
-current_file_path = os.path.dirname(os.path.abspath(__file__))
-project_root = os.path.abspath(os.path.join(current_file_path, ".."))  # Adjust path based on depth
-sys.path.append(project_root)
+# Function to scrape events
+def scrape_events(event_host_id, event_host_name, test_mode=False):
+    # Set up directories
+    parent_dir = os.path.abspath(os.getcwd())
+    data_dir = os.path.join(parent_dir, "data")
+    raw_data_dir = os.path.join(data_dir, "raw")
+    test_dir = os.path.join(data_dir, "test")
 
-# ✅ Now import the utility
-from utils.pagination_utils import generate_paginated_urls
+    # Create directories if they don't exist
+    os.makedirs(raw_data_dir, exist_ok=True)
+    os.makedirs(test_dir, exist_ok=True)
 
+    # Base URL
+    base_url = f"https://adcc.smoothcomp.com/en/federation/{event_host_id}/events/past"
+    output_file = os.path.join(raw_data_dir, f"{event_host_name}_events_detailed_{datetime.now().strftime('%Y-%m-%d')}.csv")
+    test_output_file = os.path.join(test_dir, f"{event_host_name}_test_event_detail_{datetime.now().strftime('%Y-%m-%d')}.csv")
 
-# Now import utils
-from utils.pagination_utils import generate_paginated_urls
+    # Get total pages
+    max_pages = get_max_pages(base_url)
+    print(f"Max pages: {max_pages}")
 
-
-# ===============================
-# 🛠️ SETUP SELENIUM DRIVER
-# ===============================
-def setup_driver():
-    """Configures and returns a headless Selenium WebDriver."""
-    options = Options()
-    options.add_argument("--headless")  # Run without opening a window
-    options.add_argument("--disable-gpu")
-    options.add_argument("--window-size=1920x1080")
-    service = Service(ChromeDriverManager().install())
-    return webdriver.Chrome(service=service, options=options)
-
-# ===============================
-# 📝 EXTRACT EVENT JSON TEXT
-# ===============================
-def extract_event_text(page_source):
-    """Extracts the JSON event text from the page source using regex."""
-    
-    # Try capturing a JSON array anywhere in the page
-    match = re.search(r'(\[\{.*?\}\])', page_source, re.DOTALL)
-    
-    if match:
-        events_text = match.group(1).strip()
-        print("✅ Successfully extracted event data!")
-        
-        # Validate JSON format
-        try:
-            json.loads(events_text)
-            return events_text
-        except json.JSONDecodeError:
-            print("⚠️ Extracted data is not valid JSON!")
-            return None
-    else:
-        print("⚠️ No JSON found! Regex might need adjustment.")
-        return None
-
-# ===============================
-# 🔄 SCRAPE EVENTS FOR ANY HOST
-# ===============================
-def scrape_events(event_host_id, event_host_name):
-    """
-    Scrapes all events for a given host from SmoothComp.
-    
-    :param event_host_id: ID of the event host (e.g., 176 for ADCC).
-    :param event_host_name: Name of the event host for file naming.
-    :return: List of extracted event data.
-    """
-
-    base_url = f"https://smoothcomp.com/en/federation/{event_host_id}/events/past"
-    driver = setup_driver()
-    
-    # ✅ Use pagination utility to get all page URLs
-    paginated_urls = generate_paginated_urls(base_url)
-    print(f"🔄 Found {len(paginated_urls)} pages to scrape.")
+    # Define page range
+    page_range = range(1, max_pages + 1) if not test_mode else range(1, 2)
 
     all_events = []
+    unique_event_ids = set()
 
-    for page_num, page_url in enumerate(paginated_urls, start=1):
-        print(f"📄 Fetching page {page_num} of {len(paginated_urls)}: {page_url}")
+    for page in page_range:
+        event_url =  f"{base_url}?page={page}"
+        print(f"Fetching page {page} of {max_pages}: {event_url}")
 
-        driver.get(page_url)
-        time.sleep(5)  # Allow JavaScript to load fully
+        response = requests.get(event_url)
+        if response.status_code != 200:
+            print(f"Error {response.status_code} fetching page {page}")
+            continue
 
-        # ✅ Debug - Confirm we are on the correct page
-        print(f"🔍 Current Page URL: {driver.current_url}")
+        soup = BeautifulSoup(response.text, "html.parser")
 
-        event_text = extract_event_text(driver.page_source)
-        if event_text:
-            try:
-                events_json = json.loads(event_text)
-                all_events.extend(events_json)
-                print(f"✅ Extracted {len(events_json)} events from page {page_num}")
-            except json.JSONDecodeError:
-                print(f"⚠️ Failed to parse JSON on page {page_num}")
+        # Find event data
+        script_tag = None
+        for script in soup.find_all("script"):
+            if script.string and "var events =" in script.string:
+                script_tag = script.string
+                break
 
-    driver.quit()
+        if not script_tag:
+            print(f"No event data found on page {page}. Check the extraction logic.")
+            continue
 
-    # ✅ Save results
-    events_file = f"data/{event_host_name}_events.json"
+        # Extract JSON and ensure each page contributes new data
+        try:
+            json_start = script_tag.find("var events =") + len("var events =")
+            json_end = script_tag.find(";", json_start)
+            events_json_text = script_tag[json_start:json_end].strip()
+            events_data = json.loads(events_json_text)
+
+            # Debugging: Confirm per-page extraction
+            print(f"Page {page} extracted {len(events_data)} events.")
+
+            # Append only truly new events
+            new_events = [event for event in events_data if event["id"] not in unique_event_ids]
+            unique_event_ids.update([event["id"] for event in new_events])
+            all_events.extend(new_events)
+
+            print(f"Page {page} added {len(new_events)} new events.")
+
+        except json.JSONDecodeError as e:
+            print(f"JSON Decoding Failed: {e}")
+            print(f"Extracted JSON Text (First 500 chars):\n{events_json_text[:500]}")
+
+    # Convert the full list of events to a DataFrame
     if all_events:
-        os.makedirs("data", exist_ok=True)
-        with open(events_file, "w", encoding="utf-8") as f:
-            json.dump(all_events, f, indent=4)
-        print(f"✅ Saved {len(all_events)} events to {events_file}")
+        df = pd.DataFrame(all_events)
 
-    return all_events
+        # Save to CSV
+        df.to_csv(output_file, index=False)
+        if test_mode:
+            df.to_csv(test_output_file, index=False)
+            print(f"[TEST MODE] Saved {len(df)} events to {test_output_file}")
 
-# ===============================
-# 🏁 EXECUTE SCRAPER
-# ===============================
-if __name__ == "__main__":
-    events = scrape_events(event_host_id=176, event_host_name="ADCC")
-    print(f"Extracted {len(events)} total events.")
+        print(f"Successfully extracted and saved {len(df)} events to {output_file}")
+
+    else:
+        print("No events were extracted. Check the scraping logic or site changes.")

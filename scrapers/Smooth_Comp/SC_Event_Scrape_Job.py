@@ -1,46 +1,69 @@
 import argparse
 import logging
-import sys
-import os
-from datetime import datetime
-
-# ✅ Import the actual scraper function
 from SC_Event_Scraper import scrape_events
+from SC_MatchID_Scraper import scrape_bracket_ids, scrape_match_ids
+from SC_MatchData_Scraper import scrape_match_data
+from datetime import datetime
+import os
+import traceback
 
 # ===============================
-# 📜 SET UP LOGGING
+# 📜 set timestamp
 # ===============================
-log_dir = "logs"
-os.makedirs(log_dir, exist_ok=True)  # Ensure log directory exists
 
-log_filename = f"{log_dir}/scraper_{datetime.now().strftime('%Y-%m-%d')}.log"
+date_stamp = datetime.now().strftime("%Y-%m-%d")
+
+# ===============================
+# 📜 SETUP LOGGING
+# ===============================
+
+log_file = os.path.join("logs", f"scrape_job{date_stamp}.log")
+os.makedirs("logs", exist_ok=True)  # Ensure log directory exists
+
 logging.basicConfig(
-    filename=log_filename,
+    filename=log_file,
+    filemode="a",
+    format="%(asctime)s - %(levelname)s - %(message)s",
     level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
-# ===============================
-# 🏁 EXECUTE SCRAPER (REQUIRES ARGUMENTS)
-# ===============================
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Scrape event data from SmoothComp.")
-    parser.add_argument("--event_host_id", type=int, required=True, help="Event host ID (e.g., 176 for ADCC)")
-    parser.add_argument("--event_host_name", type=str, required=True, help="Event host name (e.g., 'ADCC')")
-
-    args = parser.parse_args()
-
-    # ✅ Prevent running without required arguments
-    if not args.event_host_id or not args.event_host_name:
-        print("❌ ERROR: Both --event_host_id and --event_host_name are required.")
-        logging.error("❌ Missing required arguments. Exiting.")
-        sys.exit(1)
-
-    logging.info(f"🚀 Starting scraper for {args.event_host_name} (ID: {args.event_host_id})")
+def main(event_host_id, event_host_name, test_mode=False):
+    test_check_text = "in production mode" if not test_mode else "in test mode"
+    logging.info(f"🚀 Starting SmoothComp Scraper Job {test_check_text}...")
+    print(f"🚀 Starting SmoothComp Scraper Job {test_check_text} ...")
 
     try:
-        events = scrape_events(event_host_id=args.event_host_id, event_host_name=args.event_host_name)
-        logging.info(f"✅ Successfully extracted {len(events)} total events.")
+        logging.info("📌 Step 1: Scraping Events  ...")
+        print("📌 Step 1: Scraping Events...")
+        scrape_events(event_host_id, event_host_name,test_mode)
+
+        logging.info("📌 Step 2: Scraping Bracket IDs...")
+        print("📌 Step 2: Scraping Bracket IDs from Api...")
+        scrape_bracket_ids(event_host_name, test_mode)
+
+        logging.info("📌 Step 3: Scraping Match IDs from Api...")
+        print("📌 Step 3: Scraping Match IDs Api...")
+        scrape_match_ids(event_host_name, test_mode)
+
+        
+        logging.info("📌 Step 4: Scraping Match Data...")
+        print("📌 Step 4: Scraping Match Data...")
+        scrape_match_data(event_host_name, test_mode)
+
+        logging.info("✅ All Scraping Tasks Completed Successfully!")
+        print("✅ All Scraping Tasks Completed Successfully!")
+
+   
     except Exception as e:
-        logging.error(f"❌ Error while running scraper: {e}")
-        sys.exit(1)
+        logging.error(f"❌ Error in scraping job: {e}\n{traceback.format_exc()}")
+        print(f"❌ Error occurred: {e}")
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Run full event and match data scraping job.")
+    parser.add_argument("--event_host_id", type=int, required=True, help="Event host ID (e.g., 176 for ADCC)")
+    parser.add_argument("--event_host_name", type=str, required=True, help="Event host name (e.g., 'ADCC')")
+    parser.add_argument("--test", action="store_true", help="Run a small test sample")
+
+    args = parser.parse_args()
+    main(args.event_host_id, args.event_host_name, args.test)
