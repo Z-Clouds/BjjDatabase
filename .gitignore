@@ -13,6 +13,10 @@ data/processed/*
 !data/processed/sample_*.csv
 data/final/
 
+# Logs
+logs/*
+!.gitkeep
+
 # Reporting
 *.pbix
 reporting/dashboards/
