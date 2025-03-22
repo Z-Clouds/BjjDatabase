@@ -1,0 +1,22 @@
+﻿# Byte-compiled
+__pycache__/
+*.pyc
+
+# Virtual Environment
+.venv/
+.env
+
+# Data
+data/raw/*
+!data/raw/sample_*.json
+data/processed/*
+!data/processed/sample_*.csv
+data/final/
+
+# Reporting
+*.pbix
+reporting/dashboards/
+reporting/powerbi/*
+
+# System
+.DS_Store
