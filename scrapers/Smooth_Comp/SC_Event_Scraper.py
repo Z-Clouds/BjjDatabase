@@ -5,9 +5,9 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 import pandas as pd
 from utils.pagination_utils import get_max_pages
-
 # Function to scrape events
 def scrape_events(event_host_id, event_host_name, test_mode=False):
+    
     # Set up directories
     parent_dir = os.path.abspath(os.getcwd())
     data_dir = os.path.join(parent_dir, "data")

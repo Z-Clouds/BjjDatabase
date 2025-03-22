@@ -1,7 +1,8 @@
 import argparse
 import logging
 from SC_Event_Scraper import scrape_events
-from SC_MatchID_Scraper import scrape_bracket_ids, scrape_match_ids
+from SC_Event_Bracket_Bundle_Scraper import scrape_bracket_ids
+from SC_Event_Bracket_Bundle_MatchID_Scraper import scrape_match_ids
 from SC_MatchData_Scraper import scrape_match_data
 from datetime import datetime
 import os
@@ -42,12 +43,12 @@ def main(event_host_id, event_host_name, test_mode=False):
         scrape_bracket_ids(event_host_name, test_mode)
 
         logging.info("📌 Step 3: Scraping Match IDs from Api...")
-        print("📌 Step 3: Scraping Match IDs Api...")
+        print("📌 Step 3: Scraping Match IDs from Api...")
         scrape_match_ids(event_host_name, test_mode)
 
         
         logging.info("📌 Step 4: Scraping Match Data...")
-        print("📌 Step 4: Scraping Match Data...")
+        print("📌 Step 4: Scraping Match Data from Api...")
         scrape_match_data(event_host_name, test_mode)
 
         logging.info("✅ All Scraping Tasks Completed Successfully!")

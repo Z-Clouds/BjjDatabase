@@ -6,6 +6,8 @@ import random
 import json
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime 
+from utils.fetch_api_utils import fetch_api_data
+from utils.log_faileld_matchdata_extraction import log_failed_matchdata_extract
 
 # ===============================
 # 🔧 CONFIGURATION
@@ -73,13 +75,13 @@ def scrape_match_data(event_host_name, test_mode=False):
 
         for attempt in range(1, MAX_RETRIES + 1):
             try:
-                response = requests.get(url, headers=HEADERS, timeout=10)
-                if response.status_code != 200:
-                    print(f"⚠️ Failed (Attempt {attempt}): {url} | Status: {response.status_code}")
-                    time.sleep(random.uniform(*DELAY_RANGE))
-                    continue
+                match_json = fetch_api_data(url, HEADERS, 10)
+                 #failed request handling
+                if match_json is None:
+                    print(f"❌ {event_id} Bracket {match_id} failed attempts. Logging failure.")
+                    log_failed_matchdata_extract(event_id, match_id)
+                    continue  # Skip this bracket
                 
-                match_json = response.json()
                 match_json["event_id"] = event_id
                 match_json["match_id"] = match_id
                 match_results.append(match_json)
