@@ -1,0 +1,5 @@
+🕐 Proxy Test Log
+Started: 2025-03-23 00:49:15.084597
+Target URL: https://smoothcomp.com/en/getBracketMatchData/10445731
+Total Proxies Tested: 834
+Working Proxies: 33
