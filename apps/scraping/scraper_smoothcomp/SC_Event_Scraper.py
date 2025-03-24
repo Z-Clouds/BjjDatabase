@@ -16,7 +16,6 @@ HEADERS = {"User-Agent": "Mozilla/5.0"}
 
 output_file = directory.raw() / f"all_events_detailed_{DATESTAMP}.csv"
 test_output_file = directory.test() / f"test_event_detail_{DATESTAMP}.csv"
-
 def scrape_event_pages(test_mode=False, max_workers=5):
     max_pages = get_max_pages(ALL_EVENTS_URL)
     print(f"🔍 Found {max_pages} pages of past events")

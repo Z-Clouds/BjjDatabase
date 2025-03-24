@@ -55,12 +55,12 @@ def main(test_mode=False, skip_proxy_test=False):
         # 📌 Step 1: Start Bracket Worker (queues match jobs)
         logging.info("📌 Step 2: Scraping match IDs (bracket worker)")
         print("📌 Step 2: Scraping match IDs (bracket worker)")
-        start_bracket_worker_pool(max_workers=10, idle_timeout=600)
+        start_bracket_worker_pool(max_workers=10, idle_timeout=60)
 
         # 📌 Step 2: Start Match Worker
         logging.info("📌 Step 3: Scraping match data (match worker)")
         print("📌 Step 3: Scraping match data (match worker)")
-        start_match_worker_pool(max_workers=10, idle_timeout=600)
+        start_match_worker_pool(max_workers=10, idle_timeout=60)
 
         # 📌 Step 3: Scrape Events and Stream to Bracket Scraper
         logging.info("📌 Step 1: Scraping events and queuing brackets")
