@@ -21,6 +21,7 @@ webdriver-manager = "^4.0.2"
 psycopg2-binary = "^2.9.10"
 flask = "^2.3"
 pysocks = "^1.7.1"
+redis = "^5.2.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.3"

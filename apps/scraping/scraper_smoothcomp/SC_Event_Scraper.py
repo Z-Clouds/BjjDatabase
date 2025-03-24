@@ -1,92 +1,76 @@
-import requests
-import os
 import json
+import pandas as pd
+
 from bs4 import BeautifulSoup
 from datetime import datetime
-import pandas as pd
-from utils.pagination_utils import get_max_pages
-# Function to scrape events
-def scrape_events(event_host_id, event_host_name, test_mode=False):
-    
-    # Set up directories
-    parent_dir = os.path.abspath(os.getcwd())
-    data_dir = os.path.join(parent_dir, "data")
-    raw_data_dir = os.path.join(data_dir, "raw")
-    test_dir = os.path.join(data_dir, "test")
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
-    # Create directories if they don't exist
-    os.makedirs(raw_data_dir, exist_ok=True)
-    os.makedirs(test_dir, exist_ok=True)
+from apps.scraping.scraper_smoothcomp.utils.pagination_utils import get_max_pages
+from apps.scraping.scraper_smoothcomp.utils.fetch_api_utils import fetch_api_data
+from apps.scraping.scraper_smoothcomp.utils.directory import directory
+from apps.scraping.scraper_smoothcomp.utils.log_util import log_failure
 
-    # Base URL
-    base_url = f"https://adcc.smoothcomp.com/en/federation/{event_host_id}/events/past"
-    output_file = os.path.join(raw_data_dir, f"{event_host_name}_events_detailed_{datetime.now().strftime('%Y-%m-%d')}.csv")
-    test_output_file = os.path.join(test_dir, f"{event_host_name}_test_event_detail_{datetime.now().strftime('%Y-%m-%d')}.csv")
+ALL_EVENTS_URL = "https://smoothcomp.com/en/events/past?cg=1,7,4,3,24"
+DATESTAMP = datetime.now().strftime("%Y-%m-%d")
+HEADERS = {"User-Agent": "Mozilla/5.0"}
 
-    # Get total pages
-    max_pages = get_max_pages(base_url)
-    print(f"Max pages: {max_pages}")
+output_file = directory.raw() / f"all_events_detailed_{DATESTAMP}.csv"
+test_output_file = directory.test() / f"test_event_detail_{DATESTAMP}.csv"
 
-    # Define page range
-    page_range = range(1, max_pages + 1) if not test_mode else range(1, 2)
+def scrape_event_pages(test_mode=False, max_workers=5):
+    max_pages = get_max_pages(ALL_EVENTS_URL)
+    print(f"🔍 Found {max_pages} pages of past events")
 
-    all_events = []
-    unique_event_ids = set()
+    page_range = range(1, 3) if test_mode else range(1, max_pages + 1)
 
-    for page in page_range:
-        event_url =  f"{base_url}?page={page}"
-        print(f"Fetching page {page} of {max_pages}: {event_url}")
+    def scrape_page(page):
+        url = f"{ALL_EVENTS_URL}&page={page}"
+        print(f"📄 Scraping page {page}: {url}")
+        resp = fetch_api_data(url, headers=HEADERS, verbose=False)
 
-        response = requests.get(event_url)
-        if response.status_code != 200:
-            print(f"Error {response.status_code} fetching page {page}")
-            continue
+        if not resp:
+            log_failure("event_scrape_errors.csv", {"page": page, "url": url}, headers=["page", "url"])
+            return []
 
-        soup = BeautifulSoup(response.text, "html.parser")
+        return extract_events_from_html(resp.text)
 
-        # Find event data
-        script_tag = None
-        for script in soup.find_all("script"):
-            if script.string and "var events =" in script.string:
-                script_tag = script.string
-                break
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = {executor.submit(scrape_page, page): page for page in page_range}
+        for future in as_completed(futures):
+            page = futures[future]
+            try:
+                events = future.result()
+                if events:
+                    print(f"✅ Page {page}: {len(events)} events")
+                    yield events
+                else:
+                    print(f"⚠️ Page {page}: no events returned")
 
-        if not script_tag:
-            print(f"No event data found on page {page}. Check the extraction logic.")
-            continue
+            except Exception as e:
+                print(f"💥 Thread error on page {page}: {e}")
 
-        # Extract JSON and ensure each page contributes new data
-        try:
-            json_start = script_tag.find("var events =") + len("var events =")
-            json_end = script_tag.find(";", json_start)
-            events_json_text = script_tag[json_start:json_end].strip()
-            events_data = json.loads(events_json_text)
+def extract_events_from_html(html_text):
+    soup = BeautifulSoup(html_text, "html.parser")
+    script_tag = next((s for s in soup.find_all("script") if s.string and "var events =" in s.string), None)
 
-            # Debugging: Confirm per-page extraction
-            print(f"Page {page} extracted {len(events_data)} events.")
+    if not script_tag:
+        return []
 
-            # Append only truly new events
-            new_events = [event for event in events_data if event["id"] not in unique_event_ids]
-            unique_event_ids.update([event["id"] for event in new_events])
-            all_events.extend(new_events)
+    try:
+        start = script_tag.string.find("var events =") + len("var events =")
+        end = script_tag.string.find(";", start)
+        json_str = script_tag.string[start:end].strip()
+        return json.loads(json_str)
+    except Exception as e:
+        print(f"💥 Error extracting events from HTML: {e}")
+        return []
 
-            print(f"Page {page} added {len(new_events)} new events.")
+def save_events_to_csv(event_batches, is_test=False):
+    all_events = [event for batch in event_batches for event in batch]
+    df = pd.DataFrame(all_events)
+    df.to_csv(output_file, index=False)
+    print(f"📁 Saved {len(df)} total events → {output_file}")
 
-        except json.JSONDecodeError as e:
-            print(f"JSON Decoding Failed: {e}")
-            print(f"Extracted JSON Text (First 500 chars):\n{events_json_text[:500]}")
-
-    # Convert the full list of events to a DataFrame
-    if all_events:
-        df = pd.DataFrame(all_events)
-
-        # Save to CSV
-        df.to_csv(output_file, index=False)
-        if test_mode:
-            df.to_csv(test_output_file, index=False)
-            print(f"[TEST MODE] Saved {len(df)} events to {test_output_file}")
-
-        print(f"Successfully extracted and saved {len(df)} events to {output_file}")
-
-    else:
-        print("No events were extracted. Check the scraping logic or site changes.")
+    if is_test:
+        df.to_csv(test_output_file, index=False)
+        print(f"[TEST MODE] Also saved → {test_output_file}")

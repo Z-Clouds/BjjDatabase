@@ -1,25 +1,27 @@
 import argparse
 import logging
-from SC_Event_Scraper import scrape_events
-from SC_Event_Bracket_Bundle_Scraper import scrape_bracket_ids
-from SC_Event_Bracket_Bundle_MatchID_Scraper import scrape_match_ids
-from SC_MatchData_Scraper import scrape_match_data
-from datetime import datetime
 import os
 import traceback
+from datetime import datetime
 
-# ===============================
-# 📜 set timestamp
-# ===============================
-
-date_stamp = datetime.now().strftime("%Y-%m-%d")
+from apps.scraping.scraper_smoothcomp.SC_Event_Scraper import scrape_event_pages
+from apps.scraping.scraper_smoothcomp.SC_Event_Bracket_Bundle_Scraper import scrape_bracket_ids
+from apps.scraping.scraper_smoothcomp.utils.sc_bracket_worker import start_bracket_worker_pool
+from apps.scraping.scraper_smoothcomp.utils.sc_match_worker import start_match_worker_pool
+from apps.scraping.scraper_smoothcomp.utils.directory import DirectoryManager
+from apps.scraping.scraper_smoothcomp.utils.smooth_comp_proxy_tester import test_smooth_comp_proxies
 
 # ===============================
 # 📜 SETUP LOGGING
 # ===============================
 
-log_file = os.path.join("logs", f"scrape_job{date_stamp}.log")
-os.makedirs("logs", exist_ok=True)  # Ensure log directory exists
+directory = DirectoryManager(__file__)
+raw_data_dir = directory.raw()
+test_dir = directory.test()
+
+date_stamp = datetime.now().strftime("%Y-%m-%d")
+log_file = os.path.join("logs", f"scrape_job_{date_stamp}.log")
+os.makedirs("logs", exist_ok=True)
 
 logging.basicConfig(
     filename=log_file,
@@ -28,43 +30,58 @@ logging.basicConfig(
     level=logging.INFO,
 )
 
-def main(event_host_id, event_host_name, test_mode=False):
-    test_check_text = "in production mode" if not test_mode else "in test mode"
-    logging.info(f"🚀 Starting SmoothComp Scraper Job {test_check_text}...")
-    print(f"🚀 Starting SmoothComp Scraper Job {test_check_text} ...")
+# ===============================
+# 🚀 MASTER SCRAPER ORCHESTRATOR
+# ===============================
+def main(test_mode=False, skip_proxy_test=False):
+    test_msg = "[TEST MODE]" if test_mode else "[PRODUCTION MODE]"
+    logging.info(f"🚀 Starting SmoothComp Scraper Job {test_msg}")
+    print(f"🚀 Starting SmoothComp Scraper Job {test_msg}")
 
     try:
-        logging.info("📌 Step 1: Scraping Events  ...")
-        print("📌 Step 1: Scraping Events...")
-        scrape_events(event_host_id, event_host_name,test_mode)
+        # 📌 Step 0: Proxy Testing
+        if not skip_proxy_test:
+            logging.info("📌 Step 0: Testing proxies")
+            print("📌 Step 0: Testing proxies")
+            test_smooth_comp_proxies(
+                max_threads=20,
+                test_mode=test_mode,
+                verbose=True
+            )
+        else:
+            logging.info("⚠️ Proxy testing skipped via --skip-proxy-test flag")
+            print("⚠️ Proxy testing skipped")
 
-        logging.info("📌 Step 2: Scraping Bracket IDs...")
-        print("📌 Step 2: Scraping Bracket IDs from Api...")
-        scrape_bracket_ids(event_host_name, test_mode)
+        # 📌 Step 1: Scrape Events and Stream to Bracket Scraper
+        logging.info("📌 Step 1: Scraping events and queuing brackets")
+        print("📌 Step 1: Scraping events and queuing brackets")
+        for event_batch in scrape_event_pages(test_mode=test_mode, max_workers=10):
+            scrape_bracket_ids(event_batch, test_mode=test_mode)
 
-        logging.info("📌 Step 3: Scraping Match IDs from Api...")
-        print("📌 Step 3: Scraping Match IDs from Api...")
-        scrape_match_ids(event_host_name, test_mode)
+        # 📌 Step 2: Start Bracket Worker (queues match jobs)
+        logging.info("📌 Step 2: Scraping match IDs (bracket worker)")
+        print("📌 Step 2: Scraping match IDs (bracket worker)")
+        start_bracket_worker_pool(max_workers=5, idle_timeout=600)
 
-        
-        logging.info("📌 Step 4: Scraping Match Data...")
-        print("📌 Step 4: Scraping Match Data from Api...")
-        scrape_match_data(event_host_name, test_mode)
+        # 📌 Step 3: Start Match Worker
+        logging.info("📌 Step 3: Scraping match data (match worker)")
+        print("📌 Step 3: Scraping match data (match worker)")
+        start_match_worker_pool(max_workers=5, idle_timeout=600)
 
-        logging.info("✅ All Scraping Tasks Completed Successfully!")
-        print("✅ All Scraping Tasks Completed Successfully!")
+        logging.info("✅ All scraping steps completed successfully!")
+        print("✅ All scraping steps completed successfully!")
 
-   
     except Exception as e:
-        logging.error(f"❌ Error in scraping job: {e}\n{traceback.format_exc()}")
-        print(f"❌ Error occurred: {e}")
+        logging.error(f"❌ Scraper encountered an error: {e}\n{traceback.format_exc()}")
+        print(f"❌ Scraper encountered an error: {e}")
 
-
+# ===============================
+# 🧪 ENTRY POINT
+# ===============================
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Run full event and match data scraping job.")
-    parser.add_argument("--event_host_id", type=int, required=True, help="Event host ID (e.g., 176 for ADCC)")
-    parser.add_argument("--event_host_name", type=str, required=True, help="Event host name (e.g., 'ADCC')")
-    parser.add_argument("--test", action="store_true", help="Run a small test sample")
+    parser = argparse.ArgumentParser(description="SmoothComp Scraping Orchestrator")
+    parser.add_argument("--test", action="store_true", help="Run in test mode with limited data")
+    parser.add_argument("--skip-proxy-test", action="store_true", help="Skip proxy testing step")
 
     args = parser.parse_args()
-    main(args.event_host_id, args.event_host_name, args.test)
+    main(test_mode=args.test, skip_proxy_test=args.skip_proxy_test)

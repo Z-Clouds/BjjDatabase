@@ -1,0 +1,18 @@
+2025-03-23 15:35:02,111 - INFO - 🚀 Starting SmoothComp Scraper Job [TEST MODE]
+2025-03-23 15:35:02,112 - INFO - 📌 Step 1: Scraping All Events
+2025-03-23 15:35:05,659 - INFO - 📌 Step 2: Scraping Bracket IDs
+2025-03-23 15:35:05,659 - ERROR - ❌ Scraper encountered an error: scrape_bracket_ids() missing 1 required positional argument: 'event_host_name'
+Traceback (most recent call last):
+  File "/home/lordx/BjjDatabase/apps/scraping/scraper_smoothcomp/SC_Event_Scrape_Job.py", line 41, in main
+    scrape_bracket_ids(test_mode=test_mode)
+TypeError: scrape_bracket_ids() missing 1 required positional argument: 'event_host_name'
+
+2025-03-23 15:37:24,276 - INFO - 🚀 Starting SmoothComp Scraper Job [TEST MODE]
+2025-03-23 15:37:24,276 - INFO - 📌 Step 1: Scraping All Events
+2025-03-23 15:37:28,889 - INFO - 📌 Step 2: Scraping Bracket IDs
+2025-03-23 15:37:28,889 - ERROR - ❌ Scraper encountered an error: scrape_bracket_ids() missing 1 required positional argument: 'event_host_name'
+Traceback (most recent call last):
+  File "/home/lordx/BjjDatabase/apps/scraping/scraper_smoothcomp/SC_Event_Scrape_Job.py", line 41, in main
+    scrape_bracket_ids(test_mode=test_mode)
+TypeError: scrape_bracket_ids() missing 1 required positional argument: 'event_host_name'
+

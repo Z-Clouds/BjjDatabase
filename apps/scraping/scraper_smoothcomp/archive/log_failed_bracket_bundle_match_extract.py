@@ -1,14 +1,13 @@
 import pandas as pd
 import os
 from datetime import datetime
+import pathlib
 
+from directory import DirectoryManager
+directory = DirectoryManager(__file__)
 date_stamp = datetime.now().strftime("%Y-%m-%d")
-parent_dir = os.path.abspath(os.getcwd())
-data_dir = os.path.join(parent_dir, "data")
-raw_data_dir = os.path.join(data_dir, "raw")
-test_dir = os.path.join(data_dir, "test")
 
-failed_brackets_csv = os.path.join(data_dir, f"failed_bracket_match_extractions.csv")
+failed_brackets_csv = os.path.join(directory.data(), f"failed_bracket_match_extractions.csv")
 
 def log_failed_bracket_match_extract(event_id, bracket_bundle_id):
     """Logs a failed bracket match extraction only if it's not already logged."""

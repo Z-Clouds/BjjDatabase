@@ -1,47 +1,22 @@
+import os
 import csv
-import random
-import requests
-from itertools import cycle
 
-class ProxyPool:
-    def __init__(self, proxy_csv_path, strategy="round_robin"):
-        self.strategy = strategy
-        self.proxies = self._load_proxies(proxy_csv_path)
-        if not self.proxies:
-            raise ValueError("No proxies loaded from file.")
+def load_proxies(proxy_file_path=None):
+    """
+    Load proxies from a given CSV file path.
+    If not provided, falls back to `working_proxies.csv` in the same folder as this script.
+    """
+    if proxy_file_path is None:
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        proxy_file_path = os.path.join(current_dir, "working_proxies.csv")
 
-        if strategy == "round_robin":
-            self._proxy_cycle = cycle(self.proxies)
+    if not os.path.exists(proxy_file_path):
+        raise FileNotFoundError(f"Proxy file not found at: {proxy_file_path}")
 
-    def _load_proxies(self, path):
-        proxies = []
-        with open(path, newline='', encoding='utf-8') as f:
-            reader = csv.DictReader(f)
-            for row in reader:
-                proxy_url = row.get("proxy") or row.get("Proxy")
-                if not proxy_url:
-                    protocol = row.get("protocol")
-                    ip = row.get("ip")
-                    port = row.get("port")
-                    if protocol and ip and port:
-                        proxy_url = f"{protocol.strip()}://{ip.strip()}:{port.strip()}"
-                if proxy_url:
-                    proxies.append(proxy_url.strip())
-        return proxies
-
-    def get_proxy(self):
-        if self.strategy == "round_robin":
-            return next(self._proxy_cycle)
-        elif self.strategy == "random":
-            return random.choice(self.proxies)
-        else:
-            raise ValueError(f"Unsupported proxy rotation strategy: {self.strategy}")
-
-    def get_session(self):
-        proxy_url = self.get_proxy()
-        session = requests.Session()
-        session.proxies = {
-            "http": proxy_url,
-            "https": proxy_url
-        }
-        return session
+    proxies = []
+    with open(proxy_file_path, "r") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            if "proxy" in row:
+                proxies.append(row["proxy"])
+    return proxies
