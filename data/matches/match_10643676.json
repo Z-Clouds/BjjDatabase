@@ -1,0 +1,49 @@
+{
+  "left": {
+    "color": "yellow",
+    "profile_image": "/build/webpack/img/placeholder-image-profile-inverted.bcebcff626c61413d7d5..png",
+    "wonBy": "Advanced via BYE",
+    "isWinner": true,
+    "profile_link": "https://smoothcomp.com/en/profile/2047635",
+    "result": "won",
+    "score": null,
+    "penalty": null,
+    "advantage": null,
+    "first_name": "Bradley",
+    "last_name": "Scorsatto",
+    "country_flag": "br",
+    "country": "Brazil",
+    "affiliation": null,
+    "club": "ALLIANCE MARIO REIS",
+    "club_id": 4315,
+    "age": 24,
+    "id": 2047635,
+    "weight": "73.80 kg",
+    "wins": 0
+  },
+  "right": {
+    "first_name": "",
+    "last_name": "BYE"
+  },
+  "group": "Masculino / Adulto / Azul / Leve",
+  "matchInfo": {
+    "time": "06:00",
+    "lastRound": null,
+    "state": "finished",
+    "round": "Quarterfinals",
+    "day": null,
+    "estimated_date": null,
+    "days_left": null,
+    "start_time": null,
+    "start_time_raw": null,
+    "start_time_humans": null,
+    "mat": null,
+    "match_number": null,
+    "bracket_id": 1347193,
+    "event_id": 23399
+  },
+  "scoreboardLink": null,
+  "resolveCancelLink": null,
+  "videoLink": null,
+  "video": null
+}

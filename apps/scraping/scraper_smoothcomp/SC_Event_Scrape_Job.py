@@ -52,21 +52,21 @@ def main(test_mode=False, skip_proxy_test=False):
             logging.info("⚠️ Proxy testing skipped via --skip-proxy-test flag")
             print("⚠️ Proxy testing skipped")
 
-        # 📌 Step 1: Scrape Events and Stream to Bracket Scraper
+        # 📌 Step 1: Start Bracket Worker (queues match jobs)
+        logging.info("📌 Step 2: Scraping match IDs (bracket worker)")
+        print("📌 Step 2: Scraping match IDs (bracket worker)")
+        start_bracket_worker_pool(max_workers=10, idle_timeout=600)
+
+        # 📌 Step 2: Start Match Worker
+        logging.info("📌 Step 3: Scraping match data (match worker)")
+        print("📌 Step 3: Scraping match data (match worker)")
+        start_match_worker_pool(max_workers=10, idle_timeout=600)
+
+        # 📌 Step 3: Scrape Events and Stream to Bracket Scraper
         logging.info("📌 Step 1: Scraping events and queuing brackets")
         print("📌 Step 1: Scraping events and queuing brackets")
         for event_batch in scrape_event_pages(test_mode=test_mode, max_workers=10):
             scrape_bracket_ids(event_batch, test_mode=test_mode)
-
-        # 📌 Step 2: Start Bracket Worker (queues match jobs)
-        logging.info("📌 Step 2: Scraping match IDs (bracket worker)")
-        print("📌 Step 2: Scraping match IDs (bracket worker)")
-        start_bracket_worker_pool(max_workers=5, idle_timeout=600)
-
-        # 📌 Step 3: Start Match Worker
-        logging.info("📌 Step 3: Scraping match data (match worker)")
-        print("📌 Step 3: Scraping match data (match worker)")
-        start_match_worker_pool(max_workers=5, idle_timeout=600)
 
         logging.info("✅ All scraping steps completed successfully!")
         print("✅ All scraping steps completed successfully!")
